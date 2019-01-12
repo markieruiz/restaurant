@@ -8,6 +8,14 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// variables:
+var tables = [];
+var waitlist = [];
+// $('#reserve_name').val("");
+// $('#reserve_phone').val("");
+// $('#reserve_email').val("");
+// $('#reserve_uniqueID').val("");
+
 
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "home.html"));
@@ -20,6 +28,19 @@ app.get("/reserve", function(req, res) {
 app.get("/tables", function(req, res) {
   res.sendFile(path.join(__dirname, "tables.html"));
 });
+
+// show APIs
+
+// Displays all reservations TABLES
+app.get("/api/tables", function(req, res) {
+    return res.json(tables);
+  });
+  // Displays all waitlist
+app.get("/api/waitlist", function(req, res) {
+    return res.json(waitlist);
+  });
+
+  //--------------------------------------
 
 app.post("/api/reserve", function(req, res) {
 
